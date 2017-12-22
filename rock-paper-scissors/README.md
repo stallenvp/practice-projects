@@ -55,4 +55,4 @@
 
 
 ## Tim Version (Hard)
-- Build out a rock paper scissors game without an logical operators and only using bitwise operators
+- Build out a rock paper scissors game without any math (or logical) operators: use only using bitwise operators
