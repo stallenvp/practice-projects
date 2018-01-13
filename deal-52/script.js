@@ -148,11 +148,13 @@ function Game(playerCount) {
         if (deleteIndexArray.length > 3 || deleteIndexArray.length < 1) {
             return console.error('You can only discard 1 to 3 cards per turn');
         }
+
         deleteIndexArray.sort(function(a,b){return b-a});
         let currentPlayersHand = this.players[this.currentPlayer].hand;
         for(let cardIndex = 0; cardIndex < deleteIndexArray.length; cardIndex++) {
             let currentCard = currentPlayersHand.splice(deleteIndexArray[cardIndex], 1);
-            this.deck.discard_pile[0].push(currentCard);
+            this.deck.discard_pile.push(currentCard[0]);
+            //check above
             this.deal(this.players[this.currentPlayer]);
         }
         console.log(this.players[this.currentPlayer].hand);
