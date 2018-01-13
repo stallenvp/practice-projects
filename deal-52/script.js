@@ -135,12 +135,23 @@ function Game(playerCount) {
         }
     };
     this.runGame = function () {
-        if (this.roundCounter < 16) {
+        if (this.roundCounter < 2) {
             this.showHand(this.currentPlayer);
         }else{
-            //add values of each hand
-            //check for lowest points
-            //declare winner
+            let winningValue = 100;
+            let winningPlayer = '';
+            for(let playerIndex = 0; playerIndex < this.players.length; playerIndex++) {
+                let currentValue = null;
+                for(let cardIndex = 0; cardIndex < this.players[playerIndex].hand.length; cardIndex++) {
+                    currentValue += this.players[playerIndex].hand[cardIndex].value;
+                }
+                console.log('Player ' + (playerIndex + 1) + ' is ' +currentValue);
+                if(currentValue < winningValue) {
+                    winningValue = currentValue;
+                    winningPlayer = this.players[playerIndex].name;
+                }
+            }
+            console.log(winningPlayer + ' won with a value of ' + winningValue);
         }
     };
 
@@ -149,12 +160,24 @@ function Game(playerCount) {
             return console.error('You can only discard 1 to 3 cards per turn');
         }
 
+
+
+        if(this.deck.cards.length < deleteIndexArray.length) {
+            for(let discardPileIndex = 0; discardPileIndex < this.deck.discard_pile.length; discardPileIndex++) {
+                this.deck.cards.push(this.deck.discard_pile[discardPileIndex]);
+            }
+            this.shuffleDeck();
+            this.deck.discard_pile = [];
+        }
+
         deleteIndexArray.sort(function(a,b){return b-a});
         let currentPlayersHand = this.players[this.currentPlayer].hand;
         for(let cardIndex = 0; cardIndex < deleteIndexArray.length; cardIndex++) {
             let currentCard = currentPlayersHand.splice(deleteIndexArray[cardIndex], 1);
             this.deck.discard_pile.push(currentCard[0]);
+
             //check above
+
             this.deal(this.players[this.currentPlayer]);
         }
         console.log(this.players[this.currentPlayer].hand);
