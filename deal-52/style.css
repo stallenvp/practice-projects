@@ -1,0 +1,94 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    user-select: none;
+
+
+}
+#container{
+    height: 100%;
+    width: 100%;
+}
+
+.playerHand{
+    height: 55%;
+    width: 100%;
+    display: flex;
+    background-color: lightgrey;
+
+}
+
+.playerCard0{
+    height: 95%;
+    width: 18%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin: .8%;
+    cursor: pointer;
+    background-image: url("images/card-back.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 3%;
+    margin-left: 2%;
+}
+.playerCard1,
+.playerCard2,
+.playerCard3,
+.playerCard4{
+    height: 95%;
+    width: 18%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin: .8%;
+    cursor: pointer;
+    background-image: url("images/card-back.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 3%;
+}
+
+.playerTurn{
+    width: 100%;
+    height: 10%;
+    background-color: lightgrey;
+    font-size: 6vmin;
+    font-weight: bold;
+    text-align: center;
+}
+.bottomInfo{
+    width: 100%;
+    height: 30%;
+    background-color: lightgrey;
+    display: flex;
+
+}
+.bottom0{
+    height: 80%;
+    width: 18%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin: .8%;
+    margin-left: 2%;
+    border-radius: 3%;
+    background-color: lightgrey;
+    font-size: 3vmin;
+    justify-content: center;
+
+}
+.bottom1,
+.bottom2,
+.bottom3,
+.bottom4{
+    height: 80%;
+    width: 18%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin: .8%;
+    border-radius: 3%;
+    background-color: lightgrey;
+    font-size: 3vmin;
+    justify-content: center;
+
+
+}
