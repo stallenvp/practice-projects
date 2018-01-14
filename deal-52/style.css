@@ -3,9 +3,8 @@ body{
     width: 100vw;
     margin: 0;
     user-select: none;
-
-
 }
+
 #container{
     height: 100%;
     width: 100%;
@@ -15,13 +14,12 @@ body{
     height: 60%;
     width: 100%;
     display: flex;
-    background-color: darkolivegreen;
-
+    background-color: lightslategrey;
 }
 
 .playerCard0{
-    height: 100%;
-    width: 18%;
+    height: 90%;
+    width: 17%;
     display: inline-flex;
     flex-wrap: wrap;
     margin: 0 .8% 0 .8%;
@@ -29,16 +27,20 @@ body{
     background-image: url("images/cardBack2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 4%;
+    border-radius: 7%;
     margin-left: 2%;
+    /*background-position: center;*/
+    border-style: solid;
+    border-color: lightgrey;
 
 }
+
 .playerCard1,
 .playerCard2,
 .playerCard3,
 .playerCard4{
-    height: 100%;
-    width: 18%;
+    height: 90%;
+    width: 17%;
     display: inline-flex;
     flex-wrap: wrap;
     margin:  0 .8% 0 .8%;
@@ -46,51 +48,52 @@ body{
     background-image: url("images/cardBack2.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    border-radius: 4%;
-
+    border-radius: 7%;
+    /*background-position: center;*/
+    border-style: solid;
+    border-color: lightgrey;
 }
 
 .playerTurn{
     width: 100%;
     height: 15%;
-    background-color: darkolivegreen;
+    background-color: lightslategrey;
     font-size: 6vmin;
     font-weight: bold;
     text-align: center;
 }
+
 .bottomInfo{
     width: 100%;
     height: 25%;
-    background-color: darkolivegreen;
+    background-color: lightslategrey;
     display: flex;
-
 }
+
 .bottom0{
     height: 80%;
-    width: 18%;
+    width: 17%;
     display: inline-flex;
     flex-wrap: wrap;
     margin: .8%;
     margin-left: 2%;
     border-radius: 3%;
-    background-color: darkolivegreen;
+    background-color: lightslategrey;
     font-size: 3vmin;
     justify-content: center;
-
 }
+
 .bottom1,
 .bottom2,
 .bottom3,
 .bottom4{
     height: 80%;
-    width: 18%;
+    width: 17%;
     display: inline-flex;
     flex-wrap: wrap;
     margin: .8%;
     border-radius: 3%;
-    background-color: darkolivegreen;
+    background-color: lightslategrey;
     font-size: 3vmin;
     justify-content: center;
-
-
 }

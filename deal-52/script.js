@@ -32,12 +32,14 @@ function Game(playerCount) {
             {suite: "diamond", number: "3", value: 3, image: "images/3D.jpg"}, {suite: "diamond", number: "2", value: 2, image: "images/2D.jpg"}, {suite: "diamond", number: "Ace", value: 1, image: "images/AD.jpg"}],
         discard_pile: []
     };
+
     this.init = function (playerCount) {
         this.createPlayers(playerCount);
         this.dealInitialHand();
         this.createGameBoard();
         this.runGame();
     };
+
     this.createGameBoard = function(){
         for ( let x =0; x < 5; x ++){
             let playerCards = $("<div>",{
@@ -73,10 +75,12 @@ function Game(playerCount) {
         }
         return this.deck.cards;
     };
+
     this.deal = function (currentPlayer) {
         this.shuffleDeck();
         currentPlayer.hand.push(this.deck.cards.shift());
     };
+
     this.dealInitialHand = function () {
         let cardCounter = 5;
         for (let cardCountIndex = 0; cardCountIndex < cardCounter; cardCountIndex++) {
@@ -85,6 +89,7 @@ function Game(playerCount) {
             }
         }
     };
+
     this.runGame = function () {
         if (this.roundCounter < 15) {
             this.showHand(this.currentPlayer);
@@ -112,8 +117,6 @@ function Game(playerCount) {
             return console.error('You can only discard 1 to 3 cards per turn');
         }
 
-
-
         if(this.deck.cards.length < deleteIndexArray.length) {
             for(let discardPileIndex = 0; discardPileIndex < this.deck.discard_pile.length; discardPileIndex++) {
                 this.deck.cards.push(this.deck.discard_pile[discardPileIndex]);
@@ -127,11 +130,10 @@ function Game(playerCount) {
         for(let cardIndex = 0; cardIndex < deleteIndexArray.length; cardIndex++) {
             let currentCard = currentPlayersHand.splice(deleteIndexArray[cardIndex], 1);
             this.deck.discard_pile.push(currentCard[0]);
-
             //check above
-
             this.deal(this.players[this.currentPlayer]);
         }
+
         console.log(this.players[this.currentPlayer].hand);
         if(this.currentPlayer < this.playerCount-1){
             this.currentPlayer++;
@@ -141,8 +143,8 @@ function Game(playerCount) {
             this.roundCounter++;
             this.runGame();
         }
-
     };
+
     this.showHand = function(playerIndex) {
         console.log(this.players[playerIndex].hand);
         let playerTurnName = this.players[playerIndex].name;
