@@ -148,7 +148,7 @@ function Game(playerCount) {
     this.showHand = function(playerIndex) {
         console.log(this.players[playerIndex].hand);
         let playerTurnName = this.players[playerIndex].name;
-        $(".playerTurn").text(playerTurnName);
+        $(".playerTurn").text(playerTurnName + " - Round " + this.roundCounter);
         for(let card = 0; card < 5; card++){
             let numberInCard =  this.players[playerIndex].hand[card].number;
             let suiteInCard= this.players[playerIndex].hand[card].suite;
