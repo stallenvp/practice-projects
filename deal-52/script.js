@@ -38,6 +38,16 @@ function Game(playerCount) {
         this.dealInitialHand();
         this.createGameBoard();
         this.runGame();
+        this.handleEvents();
+    };
+
+    this.handleEvents = function(){
+        $(".playerCard0").on("click", this.playerPickCards);
+        $(".playerCard1").on("click", this.playerPickCards);
+        $(".playerCard2").on("click", this.playerPickCards);
+        $(".playerCard3").on("click", this.playerPickCards);
+        $(".playerCard4").on("click", this.playerPickCards);
+        // $(".discardBtn").on("click", this.discardCards());
     };
 
     this.createGameBoard = function(){
@@ -53,6 +63,7 @@ function Game(playerCount) {
             });
             $(".bottomInfo").append(playerBottom);
         }
+
     };
 
     this.createPlayers = function (playerCount) {
@@ -110,6 +121,16 @@ function Game(playerCount) {
             console.log(winningPlayer + ' Won with a value of ' + winningValue);
             $(".playerTurn").text(winningPlayer + ' Won with the lowest point total of ' + winningValue);
         }
+    };
+
+    this.playerPickCards = function(){
+        let cardsToDelete =[];
+        let cardClass = $(this).attr("class");
+        let cardPosition = parseInt(cardClass[cardClass.length-1]);
+        cardsToDelete.push(cardPosition);
+        console.log(cardsToDelete);
+
+        $(".discardBtn").click(game.discardCards(cardsToDelete));
     };
 
     this.discardCards = function (deleteIndexArray) {
