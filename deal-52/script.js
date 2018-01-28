@@ -11,7 +11,7 @@ function Game(playerCount) {
     this.roundCounter = 1;
     this.currentPlayer = 0;
     this.players = [];
-    // this.cardsToDelete =[];
+    let cardsToDelete =[];
     //we'll make this with a loop too
     this.deck = {
         cards: [
@@ -40,7 +40,8 @@ function Game(playerCount) {
         this.createGameBoard();
         this.runGame();
         this.handleEvents();
-        this.cardsToDelete =[];
+        // this.playerPickCards();
+
     };
 
     this.handleEvents = function(){
@@ -49,7 +50,7 @@ function Game(playerCount) {
         $(".playerCard2").on("click", this.playerPickCards);
         $(".playerCard3").on("click", this.playerPickCards);
         $(".playerCard4").on("click", this.playerPickCards);
-        $(".discardBtn").on('click', this.discardCards.bind(this));
+        $(".discardBtn").on('click', this.discardCardBtn);
     };
 
     this.createGameBoard = function(){
@@ -126,22 +127,26 @@ function Game(playerCount) {
     };
 
     this.playerPickCards = function(){
-        let cardDelete = [];
         let cardClass = $(this).attr("class");
-        // let cardPosition = parseInt(cardClass[cardClass.length-1]);
         let cardPosition = parseInt(cardClass.slice(-1));
-        cardsDelete.push(cardPosition);
-        this.cardsToDelete = cardDelete;
-        console.log(this.cardsToDelete);
-        // $(".discardBtn").click(this.discardCards(cardsToDelete));
+        cardsToDelete.push(cardPosition);
+        console.log(cardsToDelete);
+
     };
 
-    this.discardCards = function (deleteIndexArray) {
-        if (deleteIndexArray.length > 3 || deleteIndexArray.length < 1) {
+    this.discardCardBtn = function(){
+        game.discardCards(cardsToDelete);
+        cardsToDelete =[];
+
+    };
+
+    this.discardCards = function (cardsToDelete) {
+        console.log("inside discards: " +cardsToDelete);
+        if (cardsToDelete.length > 3 || cardsToDelete.length < 1) {
             return console.error('You can only discard 1 to 3 cards per turn');
         }
 
-        if(this.deck.cards.length < deleteIndexArray.length) {
+        if(this.deck.cards.length < cardsToDelete.length) {
             for(let discardPileIndex = 0; discardPileIndex < this.deck.discard_pile.length; discardPileIndex++) {
                 this.deck.cards.push(this.deck.discard_pile[discardPileIndex]);
             }
@@ -149,13 +154,15 @@ function Game(playerCount) {
             this.deck.discard_pile = [];
         }
 
-        deleteIndexArray.sort(function(a,b){return b-a});
+        cardsToDelete.sort(function(a,b){return b-a});
         let currentPlayersHand = this.players[this.currentPlayer].hand;
-        for(let cardIndex = 0; cardIndex < deleteIndexArray.length; cardIndex++) {
-            let currentCard = currentPlayersHand.splice(deleteIndexArray[cardIndex], 1);
+        for(let cardIndex = 0; cardIndex < cardsToDelete.length; cardIndex++) {
+            let currentCard = currentPlayersHand.splice(cardsToDelete[cardIndex], 1);
             this.deck.discard_pile.push(currentCard[0]);
             //check above
+
             this.deal(this.players[this.currentPlayer]);
+
         }
 
         console.log(this.players[this.currentPlayer].hand);
