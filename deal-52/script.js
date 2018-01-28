@@ -11,6 +11,7 @@ function Game(playerCount) {
     this.roundCounter = 1;
     this.currentPlayer = 0;
     this.players = [];
+    // this.cardsToDelete =[];
     //we'll make this with a loop too
     this.deck = {
         cards: [
@@ -39,6 +40,7 @@ function Game(playerCount) {
         this.createGameBoard();
         this.runGame();
         this.handleEvents();
+        this.cardsToDelete =[];
     };
 
     this.handleEvents = function(){
@@ -47,7 +49,7 @@ function Game(playerCount) {
         $(".playerCard2").on("click", this.playerPickCards);
         $(".playerCard3").on("click", this.playerPickCards);
         $(".playerCard4").on("click", this.playerPickCards);
-        // $(".discardBtn").on("click", this.discardCards());
+        $(".discardBtn").on('click', this.discardCards.bind(this));
     };
 
     this.createGameBoard = function(){
@@ -124,13 +126,14 @@ function Game(playerCount) {
     };
 
     this.playerPickCards = function(){
-        let cardsToDelete =[];
+        let cardDelete = [];
         let cardClass = $(this).attr("class");
-        let cardPosition = parseInt(cardClass[cardClass.length-1]);
-        cardsToDelete.push(cardPosition);
-        console.log(cardsToDelete);
-
-        $(".discardBtn").click(game.discardCards(cardsToDelete));
+        // let cardPosition = parseInt(cardClass[cardClass.length-1]);
+        let cardPosition = parseInt(cardClass.slice(-1));
+        cardsDelete.push(cardPosition);
+        this.cardsToDelete = cardDelete;
+        console.log(this.cardsToDelete);
+        // $(".discardBtn").click(this.discardCards(cardsToDelete));
     };
 
     this.discardCards = function (deleteIndexArray) {
